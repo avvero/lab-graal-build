@@ -11,7 +11,7 @@ RUN ./gradlew nativeCompile
 ####
 # Runtime image
 ####
-FROM scratch
+FROM debian:sid-slim
 LABEL maintainer avvero
 
 COPY --from=build /app/build/native/nativeCompile/demo /app/demo
