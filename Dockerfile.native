@@ -1,0 +1,19 @@
+####
+# Build image
+####
+FROM --platform=linux/arm64 ghcr.io/graalvm/graalvm-ce:ol9-java17 AS build
+LABEL maintainer avvero
+
+WORKDIR /app
+COPY . .
+RUN ./gradlew nativeCompile
+
+####
+# Runtime image
+####
+FROM scratch
+LABEL maintainer avvero
+
+COPY --from=build /app/build/native/nativeCompile/demo /app/demo
+
+ENTRYPOINT [ "/app/demo" ]
