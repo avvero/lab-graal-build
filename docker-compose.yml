@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.native
+      args:
+        progress: plain
     environment:
       - key:value
     ports:

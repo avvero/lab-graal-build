@@ -22,3 +22,15 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+graalvmNative {
+	toolchainDetection = true
+	binaries {
+		main {
+			debug = true
+			// Advanced options
+			buildArgs.add('--static')
+			buildArgs.add('--libc=musl')
+		}
+	}
+}
